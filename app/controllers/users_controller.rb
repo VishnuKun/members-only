@@ -1,4 +1,4 @@
-# User Controller
+# UsersController
 class UsersController < ApplicationController
   def index
     @users = User.all
@@ -18,7 +18,7 @@ class UsersController < ApplicationController
     if @user.save
       session[:user_id] = @user.id
       flash[:success] = 'User created successfully.'
-      redirect_to users_path
+      redirect_to @user
     else
       flash[:error] = 'There was a problem creating the user.'
       render 'new', status: :unprocessable_entity
@@ -34,9 +34,9 @@ class UsersController < ApplicationController
 
     if @user.update(user_params)
       flash[:notice] = 'User has been updated'
-      redirect_to users_path
+      redirect_to @user
     else
-      flash[:error] = 'User could not be found'
+      flash[:error] = 'User could not be updated'
       render 'edit', status: :unprocessable_entity
     end
   end
