@@ -1,5 +1,5 @@
 class Post < ApplicationRecord
   belongs_to :user
   has_many :comments
-  validates :title, :body, presence: true
+  validates :title, :body, presence: true, length: { minimum: 1 }
 end
