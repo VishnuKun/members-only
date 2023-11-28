@@ -1,5 +1,6 @@
 # PostsController
 class PostsController < ApplicationController
+  before_action :require_login,  only: %i[create edit update]
   def index
     @posts = Post.all
   end
@@ -50,5 +51,12 @@ class PostsController < ApplicationController
 
   def post_params
     params.require(:post).permit(:title, :body, :user_id)
+  end
+
+  def require_login
+    return if current_user
+
+    flash[:error] = 'You must be logged in to access this section'
+    redirect_to new_user_session_path
   end
 end
