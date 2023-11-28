@@ -1,0 +1,19 @@
+<%= form_with model: @post, local: true do |form| %>
+  <% flash.each do |type, message| %>
+   <div class="alert alert-<%= type %>">
+      <%= message %>
+   </div>
+  <% end %>
+
+  <div class='field'>
+    <%= form.label :title %>
+    <%= form.text_field :title %>
+  </div>
+
+  <div class='field'>
+    <%= form.label :body %>
+    <%= form.text_area :body %>
+  </div>
+
+  <%= form.submit %>
+<% end %>
