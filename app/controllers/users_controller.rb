@@ -42,9 +42,8 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    @user = User.find(params[:id])
-    @user.destroy
-    redirect_to users_path
+    session[:user_id] = nil
+    redirect_to '/'
   end
 
   private
