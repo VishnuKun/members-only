@@ -2,7 +2,11 @@
 class PostsController < ApplicationController
   before_action :require_login,  only: %i[create edit update]
   def index
-    @posts = Post.all
+    @posts = if params[:search]
+      Post.search(params[:search])
+    else
+      Post.all
+    end
   end
 
   def show
