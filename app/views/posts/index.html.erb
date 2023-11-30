@@ -41,9 +41,11 @@
                   <h1 class="text-xl font-bold pl-0">
                     <%= post.title %> 
                   </h1>
-                  <p>
-                     (<%= link_to post.user.username, user_path(post.user) %>)
-                  </p>
+                  <% if current_user %>
+                    <p>
+                      (<%= link_to post.user.username, user_path(post.user) %>)
+                    </p>
+                  <% end %>
                 </div>
                 <p class="text-right ml-auto">
                   Posted on <%= post.created_at.strftime("%B %d, %Y") %>
